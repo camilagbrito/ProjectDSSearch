@@ -7,10 +7,14 @@ import com.devsuperior.dssearch.entities.Record;
 import com.devsuperior.dssearch.repositories.GameRepository;
 import com.devsuperior.dssearch.repositories.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
+
 @Service
 public class RecordService {
     @Autowired
@@ -31,5 +35,8 @@ public class RecordService {
 
         return new RecordDTO(entity);
     }
-
+    @Transactional(readOnly = true)
+    public Page<RecordDTO> findByMoment(Instant minDate, Instant maxDate, PageRequest pageRequest) {
+        return repository.findByMoment(minDate, maxDate, pageRequest).map(x -> new RecordDTO(x));
+    }
 }
