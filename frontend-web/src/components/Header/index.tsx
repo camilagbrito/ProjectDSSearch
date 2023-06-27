@@ -1,7 +1,7 @@
 import './style.css';
 import logoImg from '../../assets/logo.svg';
 
-export function Header(){
+export default function Header(){
     return(
         <header className="main-header">
             <img src={logoImg} />
