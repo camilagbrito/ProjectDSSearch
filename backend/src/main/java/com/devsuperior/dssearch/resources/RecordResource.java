@@ -10,12 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -31,6 +26,7 @@ public class RecordResource {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Page<RecordDTO>> findAll(
             @RequestParam(value = "min", defaultValue = "") String min,
             @RequestParam(value = "max", defaultValue = "") String max,
